@@ -3,4 +3,4 @@ all: Assignment4.tex changelog.tex
 changelog.tex: changes.sh
 	./changes.sh > changelog.tex
 clean:
-	rm -f *.pdf *.ps *.toc *.dvi *.out *.log *.aux *.bbl *.blg *.pyg changelog.tex
+	rm -f *.ps *.toc *.dvi *.out *.log *.aux *.bbl *.blg *.pyg changelog.tex
