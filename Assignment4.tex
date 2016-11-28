@@ -17,6 +17,12 @@
 \maketitle
 
 \begin{abstract}
+   For the SLOB SLAB assignment we will be implementing code in the default yocto kernel. 
+   The purpose of this assignment is to understnad how the SLOB first-fit algorithm works, through 
+   the implementation of the afforementioned algorithm. We will also be implementing the best-fit 
+   allocation algorithm. We will be writing a program that computes the efficiency of both 
+   algorithms and compare the fragmentation suffered by each. The solution to this problem will be 
+   implemented within the default yocto kernel.
 \end{abstract}
 
 \clearpage
@@ -26,6 +32,36 @@
 \clearpage
 
 \section{Program Design}
+\subsection{Description of Problem}
+The SLOB SLAB assignment will require the implementation of code in the default Linux yocto kernel. 
+The algorithms that will be implemented are the SLOB first-fit algorithm and the best-fit allocation
+ algorithm. In addition to these two algorithms, we will be measuring the efficiency of both 
+ algorithms, and we will compare the fragmentation suffered by each. Measuring the efficiency will 
+ require the addition of a system call that will measure the actual memory usage. This program will 
+ be developed in the slob.c file in the mm directory of the Linux kernel.
+
+ There are additional hints given by the assignment description that may be useful for the design of
+ the implementation of these algorithms. These hints include that the best-fit must be over all 
+allocated pages, not just the current page. Additionally, we must pick a system call number that 
+has never been used for measuring the actual memory usage. Finally we will also need to be careful
+ with our memory tracking, and that SLOB is just a simple list of blocks. With the help of these 
+hints we should be able to complete the tasks described above as well as the following sections 
+of documentation.
+
+\subsection{Design of SLOB First-Fit Algorithm}
+\subsection{Design of Best-Fit Allocation Algorithm}
+\subsection{Design of Effeciency and Fragmentation Measurement Script}
+The script that measures the effeciency of the algorithms will run each algorithm for a series of 
+different inputs. The script will allocate various sizes of memory using each method. The 
+measurement of the efficiency will be accomplished by measuring the total time required to allocate 
+all memory blocks using each method. The times will be output to a CSV along with the number of 
+blocks allocated during the test.
+
+The script which measures the fragmentation of each implementation of the algorithm will be 
+performed on the output of the effeciency test. After the allocation of each memory block has 
+occured, a check will be run on the used memory for each algorithm. This will be accomplished using 
+a system call. The fragementation suffered by the memory blocks allocated by each algorithm will be 
+output to the same CSV as the effeciency measurements.
 
 \section{Version Control Logs}
 \input{changelog.tex}
@@ -38,8 +74,35 @@ the commit log as a table.
 The tex document (this document) contains all documentation on the project. 
 The Makefile will compile this document and the table of commits into a pdf.
 
+\subsection{November 28nd, 2016 - 2:30 pm}
+Wrote assignment abstract and started Program Design.
+Added subsection for the description of the problem, which includes an overview of the project 
+description given on the CS444 class website.
+Added content in sections for purpose of assignment, testing methods, and learning outcomes.
+
+\subsection{November 28nd, 2016 - 3:00 pm}
+Wrote content for design of efficiency and fragmentation measurement algorithms.
+
 \section{Purpose of Assignment}
+The purpose of this assignment is to understand how the SLOB first-fit algorithm and the best-fit 
+allocation algorithm work through the implementation of each algorithm, the measuring of their 
+efficiencies, and comparing the fragmentation caused by each algorithm. This will help us understand
+ the way that the allocation of memory blocks works in Linux systems. The algorithms and algorithm 
+analytics will be implemented in the default Linux yocto kernel, which should help us understand the
+ portion of the implementation that is Linux-specific.
+
 \section{Testing Methods}
+We will be testing the implementations of these algorithms through measuring their efficiency and 
+comparing the fragmentation caused by each of the algorithms. We will measure the efficiency by 
+writing a test script that will run the algorithms with a variety of inputs and measure the runtime 
+of each trial. From there we should be able to equate the runtimes with a complexity using the data.
+ Measuring the fragmentation of each algorithms will require adding a system call which will return 
+ the memory usage. This test script should store the results in a CSV which can then be used as the 
+ input to create any desired graph.
+
 \section{Learning Outcomes}
+From this assignment we will learn how to implement SLOB first-fit algorithm and a best-fit 
+allocation algorithm. We will learn how to make a system call to measure the fragmentation caused by each of the algorithms. We will learn how to measure and calculate the efficiency of the 
+algorithms. We learned how to do all this within the Linux yocto kernel.
 
 \end{document}
