@@ -49,7 +49,22 @@ hints we should be able to complete the tasks described above as well as the fol
 of documentation.
 
 \subsection{Design of SLOB First-Fit Algorithm}
+The SLOB First-Fit algorithm is one of three default memory allocation algorithms available in the 
+Linux kernel. We will be implementing the SLOB memory allocator in a default Linux yocto kernel 
+within the slob.c file in the mm directory. SLOB uses a first-fit memory allocation algorithm. This 
+means that the SLOB allocator simply allocates the first sufficiently-large block of memory that it 
+can find. We will implement the algorithm by receiving a desired block size, then running through 
+the memory until a free block of sufficient size is detected. The memory block will then be 
+allocated.
+
 \subsection{Design of Best-Fit Allocation Algorithm}
+The Best-Fit allocation algorithm optomizes the allocation of memory in order to limit 
+fragmentation, and consolodating memory. It works by searching for a free block of memory that best 
+fits the desired size of block. This optomization must be performed over all allocated pages, not 
+just the current page. This method of memory allocation will require that all memory be traversed 
+until a free block of equal size to the requested block is found, or until the end of the memory has
+ been reached. If there is not a block of the exact correct size, the block should be placed where  a free block closest to the size of the desired block is located.
+
 \subsection{Design of Effeciency and Fragmentation Measurement Script}
 The script that measures the effeciency of the algorithms will run each algorithm for a series of 
 different inputs. The script will allocate various sizes of memory using each method. The 
@@ -82,6 +97,7 @@ Added content in sections for purpose of assignment, testing methods, and learni
 
 \subsection{November 28nd, 2016 - 3:00 pm}
 Wrote content for design of efficiency and fragmentation measurement algorithms.
+Wrote content for design of SLOB and Best-fit memory allocation algorithms.
 
 \section{Purpose of Assignment}
 The purpose of this assignment is to understand how the SLOB first-fit algorithm and the best-fit 
